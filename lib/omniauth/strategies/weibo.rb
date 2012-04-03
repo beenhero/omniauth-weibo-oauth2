@@ -43,6 +43,15 @@ module OmniAuth
         @raw_info ||= access_token.get("/2/users/show.json", :params => {:uid => @uid}).parsed
       end
       
+      alias :old_request_phase :request_phase
+      def request_phase
+        display = session['omniauth.params']['display']
+        if display
+          options[:authorize_params].merge!(:display => display)
+        end
+        old_request_phase
+      end
+      
     end
   end
 end
