@@ -4,13 +4,17 @@ module OmniAuth
   module Strategies
     class Weibo < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site           => "https://api.weibo.com",
-        :authorize_url  => "/oauth2/authorize",
-        :token_url      => "/oauth2/access_token"
+        :site          => "https://api.weibo.com",
+        :authorize_url => "/oauth2/authorize",
+        :token_url     => "/oauth2/access_token"
       }
       option :token_params, {
-        :parse          => :json
+        :parse         => :json
       }
+      option :authorize_params, {
+        :forcelogin    => true
+      }
+
 
       uid do
         raw_info['id']
@@ -62,7 +66,7 @@ module OmniAuth
           end
         end
       end
-      
+
     end
   end
 end
