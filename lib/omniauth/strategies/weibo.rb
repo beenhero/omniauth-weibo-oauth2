@@ -44,7 +44,7 @@ module OmniAuth
       end
 
       ##
-      # You can pass +display+, +with_offical_account+ or +state+ +forcelogin+ +scope+ params to the auth request, if
+      # You can pass +display+, +with_offical_account+ or +state+ +forcelogin+ params to the auth request, if
       # you need to set them dynamically. You can also set these options
       # in the OmniAuth config :authorize_params option.
       #
@@ -52,7 +52,7 @@ module OmniAuth
       #
       def authorize_params
         super.tap do |params|
-          %w[display with_offical_account state forcelogin scope].each do |v|
+          %w[display with_offical_account state forcelogin].each do |v|
             if request.params[v]
               params[v.to_sym] = request.params[v]
 
