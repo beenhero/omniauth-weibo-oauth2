@@ -4,12 +4,12 @@ module OmniAuth
   module Strategies
     class Weibo < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site           => "https://api.weibo.com",
-        :authorize_url  => "/oauth2/authorize",
-        :token_url      => "/oauth2/access_token"
+        :site          => "https://api.weibo.com",
+        :authorize_url => "/oauth2/authorize",
+        :token_url     => "/oauth2/access_token"
       }
       option :token_params, {
-        :parse          => :json
+        :parse         => :json
       }
 
       uid do
@@ -44,7 +44,7 @@ module OmniAuth
       end
 
       ##
-      # You can pass +display+, +with_offical_account+ or +state+ params to the auth request, if
+      # You can pass +display+, +with_offical_account+ or +state+ +forcelogin+ params to the auth request, if
       # you need to set them dynamically. You can also set these options
       # in the OmniAuth config :authorize_params option.
       #
@@ -62,7 +62,7 @@ module OmniAuth
           end
         end
       end
-      
+
     end
   end
 end
