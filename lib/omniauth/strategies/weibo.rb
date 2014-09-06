@@ -32,16 +32,24 @@ module OmniAuth
 
       extra do
         {
-          :raw_info => raw_info
+          :raw_info => raw_info,
+          :email => email
         }
       end
 
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = 'access_token'
-        @uid ||= access_token.get('/2/account/get_uid.json').parsed["uid"]
-        @raw_info ||= access_token.get("/2/users/show.json", :params => {:uid => @uid}).parsed
+        @uid ||= access_token.get('/2/account/get_uid.json').parsed['uid']
+        @raw_info ||= access_token.get('/2/users/show.json', params: {uid: @uid}).parsed
       end
+
+      def email
+        access_token.options[:mode] = :query
+        access_token.options[:param_name] = 'access_token'
+        @email ||= if (emails = access_token.get('/2/account/profile/email.json', params: {uid: @uid}))
+                     emails.parsed[0]['email']
+                   end
 
       ##
       # You can pass +display+, +with_offical_account+ or +state+ params to the auth request, if
@@ -62,7 +70,7 @@ module OmniAuth
           end
         end
       end
-      
+
     end
   end
 end
