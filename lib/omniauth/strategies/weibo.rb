@@ -21,7 +21,7 @@ module OmniAuth
           :nickname     => raw_info['screen_name'],
           :name         => raw_info['name'],
           :location     => raw_info['location'],
-          :image        => raw_info['profile_image_url'],
+          :image        => find_image(raw_info),
           :description  => raw_info['description'],
           :urls => {
             'Blog'      => raw_info['url'],
@@ -41,6 +41,10 @@ module OmniAuth
         access_token.options[:param_name] = 'access_token'
         @uid ||= access_token.get('/2/account/get_uid.json').parsed["uid"]
         @raw_info ||= access_token.get("/2/users/show.json", :params => {:uid => @uid}).parsed
+      end
+
+      def find_image
+        raw_info[%w(avatar_hd avatar_large profile_image_url).find { |e| raw_info[e].present? }]
       end
 
       ##
