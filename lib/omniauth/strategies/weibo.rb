@@ -56,12 +56,9 @@ module OmniAuth
       #
       def authorize_params
         super.tap do |params|
-          %w[display with_offical_account state forcelogin].each do |v|
+          %w[display with_offical_account forcelogin].each do |v|
             if request.params[v]
               params[v.to_sym] = request.params[v]
-
-              # to support omniauth-oauth2's auto csrf protection
-              session['omniauth.state'] = params[:state] if v == 'state'
             end
           end
         end
