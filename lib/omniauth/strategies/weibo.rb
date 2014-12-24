@@ -32,7 +32,8 @@ module OmniAuth
 
       extra do
         {
-          :raw_info => raw_info
+          :raw_info => raw_info,
+          :email => email
         }
       end
 
@@ -41,6 +42,15 @@ module OmniAuth
         access_token.options[:param_name] = 'access_token'
         @uid ||= access_token.get('/2/account/get_uid.json').parsed["uid"]
         @raw_info ||= access_token.get("/2/users/show.json", :params => {:uid => @uid}).parsed
+        @email ||= access_token.get("/2/account/profile/email.json", :params => {:uid => @uid}).parsed
+      end
+      
+      def email
+        if @email
+          @email
+        else
+          raw_info
+        end
       end
 
       def find_image
