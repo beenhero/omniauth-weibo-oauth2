@@ -21,7 +21,7 @@ module OmniAuth
           :nickname     => raw_info['screen_name'],
           :name         => raw_info['name'],
           :location     => raw_info['location'],
-          :image        => find_image,
+          :image        => image_url,
           :description  => raw_info['description'],
           :urls => {
             'Blog'      => raw_info['url'],
@@ -45,6 +45,25 @@ module OmniAuth
 
       def find_image
         raw_info[%w(avatar_hd avatar_large profile_image_url).find { |e| raw_info[e].present? }]
+      end
+
+      #url:                 option:   size:
+      #avatar_hd            original  original_size
+      #avatar_large         large     180x180
+      #profile_image_url    middle    50x50
+      #                     small     30x30
+      #default is middle
+      def image_url
+        case options[:image_size].to_sym
+        when :original
+          url = raw_info['avatar_hd']
+        when :large
+          url = raw_info['avatar_large']
+        when :small
+          url = raw_info['avatar_large'].sub('/180/','/30/')
+        else 
+          url = raw_info['profile_image_url']
+        end
       end
 
       ##
