@@ -30,6 +30,15 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
+## Authentication Option
+* **image_size**: This option defines the size of the user's image. Valid options include `small` (30x30), `middle` (50x50), `large` (180x180) and `original` (the size of the image originally uploaded). Default is `middle`.
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :weibo, ENV['WEIBO_KEY'], ENV['WEIBO_SECRET'], :image_size => 'original'
+end
+```
+
 ## Authentication Hash
 
 Here's an example *Authentication Hash* available in `request.env['omniauth.auth']`:
