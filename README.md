@@ -29,6 +29,14 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :weibo, ENV['WEIBO_KEY'], ENV['WEIBO_SECRET']
 end
 ```
+## Configuration
+
+you can set up redirect_uri in `omniauth.rb` as following:
+
+```ruby
+provider :weibo, ENV['WEIBO_API'], ENV['WEIBO_SECRET'],
+         token_params: {redirect_uri: "http://127.0.0.1:3000/auth/weibo/callback" }
+```
 
 ## Authentication Hash
 
