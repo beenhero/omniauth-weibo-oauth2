@@ -6,7 +6,8 @@ module OmniAuth
       option :client_options, {
         :site           => "https://api.weibo.com",
         :authorize_url  => "/oauth2/authorize",
-        :token_url      => "/oauth2/access_token"
+        :token_url      => "/oauth2/access_token",
+        :token_method => :post
       }
       option :token_params, {
         :parse          => :json
@@ -82,7 +83,18 @@ module OmniAuth
           end
         end
       end
-      
+
+      protected
+      def build_access_token
+        params = {
+          'client_id' => client.id,
+          'client_secret' => client.secret,
+          'code' => request.params['code'],
+          'grant_type' => 'authorization_code'
+        }.merge(token_params.to_hash(symbolize_keys: true))
+        client.get_token(params, deep_symbolize(options.auth_token_params))
+      end
+
     end
   end
 end
