@@ -18,7 +18,6 @@ module OmniAuth
       end
 
       info do
-        debugger
         {
           :nickname     => raw_info['screen_name'],
           :name         => raw_info['name'],
