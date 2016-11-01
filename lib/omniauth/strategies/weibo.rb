@@ -26,7 +26,7 @@ module OmniAuth
           :description  => raw_info['description'],
           :urls => {
             'Blog'      => raw_info['url'],
-            'Weibo'     => [nil, ""].include?(raw_info['domain']) ? "http://weibo.com/u/#{raw_info['id']}" : "http://weibo.com/#{raw_info['domain']}",
+            'Weibo'     => raw_info['domain'].present?? "http://weibo.com/#{raw_info['domain']}" : "http://weibo.com/u/#{raw_info['id']}",
           }
         }
       end
@@ -62,7 +62,7 @@ module OmniAuth
           url = raw_info['avatar_large']
         when :small
           url = raw_info['avatar_large'].sub('/180/','/30/')
-        else
+        else 
           url = raw_info['profile_image_url']
         end
       end
