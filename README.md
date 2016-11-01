@@ -79,6 +79,15 @@ Here's an example *Authentication Hash* available in `request.env['omniauth.auth
 ```
 *PS.* Built and tested on MRI Ruby 1.9.3
 
+## Build&pulish gem
+```
+gem build omniauth-weibo-oauth2.gemspec
+```
+
+```
+gem push omniauth-weibo-oauth2-VERSION.gem
+```
+
 ## Contributing
 
 1. Fork it
