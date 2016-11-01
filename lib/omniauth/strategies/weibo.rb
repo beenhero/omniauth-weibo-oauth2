@@ -26,7 +26,7 @@ module OmniAuth
           :description  => raw_info['description'],
           :urls => {
             'Blog'      => raw_info['url'],
-            'Weibo'     => [nil, ""].include?(raw_info['domain']) ? "http://weibo.com/u/#{raw_info['id']}" : "http://weibo.com/#{raw_info['domain']}",
+            'Weibo'     => raw_info['domain'].empty? ? "http://weibo.com/u/#{raw_info['id']}" : "http://weibo.com/#{raw_info['domain']}",
           }
         }
       end
