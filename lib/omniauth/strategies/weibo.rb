@@ -55,7 +55,8 @@ module OmniAuth
       #                     small     30x30
       #default is middle
       def image_url
-        case options[:image_size].to_sym
+        image_size = options[:image_size] || :middle
+        case image_size.to_sym
         when :original
           url = raw_info['avatar_hd']
         when :large
