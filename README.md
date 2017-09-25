@@ -1,3 +1,16 @@
+# Status
+[![Gem Version](https://img.shields.io/gem/v/omniauth-weibo-oauth2.svg)][gem]
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/beenhero/omniauth-weibo-oauth2.svg)][open issues]
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/beenhero/omniauth-weibo-oauth2.svg)][issue resolution]
+[![Build Status](https://img.shields.io/nevermin/omniauth-weibo-oauth2/omniauth.svg)][travis]
+
+[gem]: https://rubygems.org/gems/omniauth-weibo-oauth2
+[open issues]: (https://isitmaintained.com/project/beenhero/omniauth-weibo-oauth2 "Percentage of issues still open")
+[issue resolution]: (https://isitmaintained.com/project/beenhero/omniauth-weibo-oauth2 "Average time to resolve an issue")
+[travis]: http://travis-ci.org/NeverMin/omniauth-weibo-oauth2
+
+
+
 # OmniAuth Weibo OAuth2
 
 Weibo OAuth2 Strategy for OmniAuth 1.0.
