@@ -3,7 +3,7 @@
 [![Security Check](https://hakiri.io/github/beenhero/omniauth-weibo-oauth2/master.svg)][security]
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/beenhero/omniauth-weibo-oauth2.svg)][OpenIssues]
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/beenhero/omniauth-weibo-oauth2.svg)][IssueResolution]
-[![Build Status](https://img.shields.io/travis/nevermin/omniauth-weibo-oauth2.svg)][travis]
+[![Build Status](https://travis-ci.org/NeverMin/omniauth-weibo-oauth2.svg?branch=master)][travis]
 
 [gem]: https://rubygems.org/gems/omniauth-weibo-oauth2
 [security]: https://hakiri.io/github/beenhero/omniauth-weibo-oauth2/master
