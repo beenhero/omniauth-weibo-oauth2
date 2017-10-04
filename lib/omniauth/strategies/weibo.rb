@@ -37,6 +37,10 @@ module OmniAuth
         }
       end
 
+      def callback_url
+        full_host + script_name + callback_path
+      end
+
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = 'access_token'
@@ -92,7 +96,7 @@ module OmniAuth
           'client_secret' => client.secret,
           'code' => request.params['code'],
           'grant_type' => 'authorization_code',
-          'redirect_uri' => options['redirect_uri']
+          'redirect_uri' => callback_url
         }.merge(token_params.to_hash(symbolize_keys: true))
         client.get_token(params, deep_symbolize(options.auth_token_params))
       end
