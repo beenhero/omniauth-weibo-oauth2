@@ -26,7 +26,7 @@ module OmniAuth
           :description  => raw_info['description'],
           :urls => {
             'Blog'      => raw_info['url'],
-            'Weibo'     => raw_info['domain'].empty? ? "http://weibo.com/u/#{raw_info['id']}" : "http://weibo.com/#{raw_info['domain']}",
+            'Weibo'     => raw_info['domain'].empty? ? "https://weibo.com/u/#{raw_info['id']}" : "https://weibo.com/#{raw_info['domain']}",
           }
         }
       end
@@ -81,10 +81,11 @@ module OmniAuth
       #
       def authorize_params
         super.tap do |params|
-          %w[display with_offical_account forcelogin].each do |v|
+          %w[display with_offical_account forcelogin state].each do |v|
             if request.params[v]
               params[v.to_sym] = request.params[v]
             end
+            session["omniauth.state"] = params[v.to_sym] if v == 'state'
           end
         end
       end
@@ -92,13 +93,13 @@ module OmniAuth
       protected
       def build_access_token
         params = {
-          'client_id' => client.id,
+          'client_id'     => client.id,
           'client_secret' => client.secret,
-          'code' => request.params['code'],
-          'grant_type' => 'authorization_code',
-          'redirect_uri' => callback_url
-        }.merge(token_params.to_hash(symbolize_keys: true))
-        client.get_token(params, deep_symbolize(options.auth_token_params))
+          'code'          => request.params['code'],
+          'grant_type'    => 'authorization_code',
+          'redirect_uri'  => callback_url
+          }.merge(token_params.to_hash(symbolize_keys: true))
+        client.get_token(params, deep_symbolize(options.token_params))
       end
 
     end
