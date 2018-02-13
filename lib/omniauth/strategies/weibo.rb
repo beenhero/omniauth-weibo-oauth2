@@ -37,6 +37,10 @@ module OmniAuth
         }
       end
 
+      def callback_url
+        full_host + script_name + callback_path
+      end
+
       def raw_info
         access_token.options[:mode] = :query
         access_token.options[:param_name] = 'access_token'
@@ -77,10 +81,11 @@ module OmniAuth
       #
       def authorize_params
         super.tap do |params|
-          %w[display with_offical_account forcelogin].each do |v|
+          %w[display with_offical_account forcelogin state].each do |v|
             if request.params[v]
               params[v.to_sym] = request.params[v]
             end
+            session["omniauth.state"] = params[v.to_sym] if v == 'state'
           end
         end
       end
@@ -94,7 +99,7 @@ module OmniAuth
           'grant_type' => 'authorization_code',
           'redirect_uri' => options['redirect_uri']
         }.merge(token_params.to_hash(symbolize_keys: true))
-        client.get_token(params, deep_symbolize(options.auth_token_params))
+        client.get_token(params, deep_symbolize(options.token_params))
       end
 
     end
