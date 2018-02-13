@@ -93,11 +93,11 @@ module OmniAuth
       protected
       def build_access_token
         params = {
-          'client_id' => client.id,
+          'client_id'     => client.id,
           'client_secret' => client.secret,
-          'code' => request.params['code'],
-          'grant_type' => 'authorization_code',
-          'redirect_uri' => options['redirect_uri']
+          'code'          => request.params['code'],
+          'grant_type'    => 'authorization_code',
+          'redirect_uri'  => callback_url
         }.merge(token_params.to_hash(symbolize_keys: true))
         client.get_token(params, deep_symbolize(options.token_params))
       end
