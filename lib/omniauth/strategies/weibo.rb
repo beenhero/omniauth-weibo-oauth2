@@ -38,7 +38,11 @@ module OmniAuth
       end
 
       def callback_url
-        full_host + script_name + callback_path
+        token_params_redirect || (full_host + script_name + callback_path)
+      end
+
+      def token_params_redirect
+        token_params['redirect_uri'] || token_params[:redirect_uri]
       end
 
       def raw_info
