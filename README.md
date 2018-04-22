@@ -92,7 +92,7 @@ Here's an example *Authentication Hash* available in `request.env['omniauth.auth
   }
 }
 ```
-*PS.* Built and tested on MRI Ruby 1.9.3
+*PS.* Built and tested on MRI Ruby 2.4.2
 
 ## Build&pulish gem
 ```
