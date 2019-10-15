@@ -19,6 +19,10 @@ Weibo OAuth2 Strategy for OmniAuth 1.0.
 
 Read Weibo OAuth2 docs for more details: https://open.weibo.com/wiki/授权机制
 
+## Security
+
+- CVE-2019-17268 [Issue #36](https://github.com/beenhero/omniauth-weibo-oauth2/issues/36)
+
 ## Installing
 
 Add to your `Gemfile`:
