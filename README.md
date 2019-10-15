@@ -17,7 +17,7 @@
 
 Weibo OAuth2 Strategy for OmniAuth 1.0.
 
-Read Weibo OAuth2 docs for more details: http://open.weibo.com/wiki/授权机制
+Read Weibo OAuth2 docs for more details: https://open.weibo.com/wiki/授权机制
 
 ## Installing
 
